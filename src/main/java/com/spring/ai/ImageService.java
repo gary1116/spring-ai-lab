@@ -26,8 +26,9 @@ public class ImageService {
                 new ImagePrompt(prompt,
                         OpenAiImageOptions.builder()
                                 .quality("hd")
-                                .height(1024)
-                                .width(1024)
+                                .height(512)
+                                .width(512)
+                                .style("natural")
                                 .build())
         );
         return imageResponse;
