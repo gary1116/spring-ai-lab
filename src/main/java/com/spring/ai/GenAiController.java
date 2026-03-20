@@ -34,21 +34,21 @@ public class GenAiController {
     }
 
     @GetMapping("/generate-image")
-    public void generateImages(HttpServletResponse response, @RequestParam String prompt) throws IOException {
+    public String generateImages(@RequestParam String prompt) throws IOException {
         ImageResponse imageResponse= imageService.generateImage(prompt);
 
        String imageUrl= imageResponse.getResult().getOutput().getUrl();
 
-       response.sendRedirect(imageUrl);
+       return imageUrl;
     }
 
     @GetMapping("/generate-image-options")
-    public void generateImagesWithOptions(HttpServletResponse response, @RequestParam String prompt) throws IOException {
+    public String generateImagesWithOptions(@RequestParam String prompt) throws IOException {
         ImageResponse imageResponse= imageService.generateImageWithOptions(prompt);
 
         String imageUrl= imageResponse.getResult().getOutput().getUrl();
 
-        response.sendRedirect(imageUrl);
+        return imageUrl;
     }
 
     @GetMapping("recipe-creator")
