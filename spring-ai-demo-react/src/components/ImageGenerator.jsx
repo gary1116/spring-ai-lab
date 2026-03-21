@@ -12,6 +12,8 @@ const ImageGenerator = () => {
     const handleClick = async () => {
         try {
             setLoader(true);
+            setError('');
+            setImageUrl('');
             const response = await axios.get('http://localhost:8080/generate-image', {
                 params: { prompt }
             });
@@ -34,7 +36,7 @@ const ImageGenerator = () => {
 
             {loader && (
                 <div className="text-lg font-semibold text-blue-600 animate-pulse">
-                    Generating image through animate-pulse...
+                    Generating image
                 </div>
             )}
 
@@ -59,6 +61,11 @@ const ImageGenerator = () => {
                     onChange={(e) => setPrompt(e.target.value)}
                     placeholder='please Enter a prompt for image generation'
                     className='border-3 rounded-lg p-2 border-gray-500 w-3/4'
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            handleClick();
+                        }
+                    }}
                 />
                 <button className='cursor-pointer m-2 border-2 rounded-lg p-2 bg-blue-500 text-white' onClick={() => handleClick()}>Enter</button>
             </div>

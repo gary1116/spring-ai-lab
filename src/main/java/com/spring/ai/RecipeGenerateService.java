@@ -21,11 +21,32 @@ public class RecipeGenerateService {
                                String dietaryRestrictions) {
 
         String template = """
-                I want to create a recipe using the following ingredients :{ingredient}.
-                The cuisine type I prefer is {cuisine}.
-                please consider the dietary restrictions:{dietaryRestrictions}.
-                please provide me with a detailed recipe including title, list of ingredients, and cooking intructions
-                """;
+        I want to create a recipe using the following ingredients: {ingredient}.
+        The cuisine type I prefer is: {cuisine}.
+        Please consider these dietary restrictions: {dietaryRestrictions}.
+
+        Please provide the recipe in this exact format:
+
+        Recipe Title:
+        - title here
+
+        Ingredients:
+        - ingredient 1
+        - ingredient 2
+        - ingredient 3
+
+        Instructions:
+        - step 1
+        - step 2
+        - step 3
+
+        Tips:
+        - tip 1
+        - tip 2
+
+        Keep the response clean, short, and easy to read.
+        """;
+
         PromptTemplate promptTemplate = new PromptTemplate(template);
         Map<String, Object> params = Map.of(
                 "ingredient", ingredient,
